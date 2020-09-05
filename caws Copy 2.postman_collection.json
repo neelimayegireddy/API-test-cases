@@ -1,0 +1,124 @@
+{
+	"info": {
+		"_postman_id": "5d0d5c30-edeb-4158-8264-a68496b0b547",
+		"name": "caws Copy 2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET REQUEST",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"//Positive test cases\r",
+							"//Status code-\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"//Headers checking\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"page\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"per_page\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"total\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"total_pages\");\r",
+							"    \r",
+							"});\r",
+							"//json value checking\r",
+							"\r",
+							"pm.test(\"Expeted george at data[0].email\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data[0].email).to.eql(\"george.bluth@reqres.in\");\r",
+							"});\r",
+							"\r",
+							"//Negative Test case\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"page1\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"per_page\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"total\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"total_pages\");\r",
+							"    \r",
+							"});\r",
+							"pm.test(\"Expeted george at data[0].email\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data[0].email).to.eql(\"janet.bluth@reqres.in\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"id": "b97de9a6-c170-4fc1-9a4d-b524761a58de"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/users?page=1\n",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1\n"
+						}
+					]
+				},
+				"description": "user list"
+			},
+			"response": []
+		},
+		{
+			"name": "GET BY ID",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n         \r\n         \r\n            \"first_name\": \"Neelima\",\r\n            \"last_name\": \"Weaver\"\r\n            \r\n        }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users/696",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users",
+						"696"
+					]
+				},
+				"description": "Single user by id"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
